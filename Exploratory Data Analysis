@@ -1,0 +1,95 @@
+-- total count of cars
+select count(*) as total_cars
+from car_data
+
+
+-- how many cars are sold in 2023
+select count(*)  as  cars_in_20203
+from car_data
+where year = '2023'
+
+
+-- how many cars are sold in  2020,2021,2022,2023
+ select  year , count(name) as cars_sold 
+ from car_data
+where year in( 2020,2021,2022,2023)
+group by `year` 
+order by  cars_sold desc  
+
+
+-- Total cars sold in repective year 
+select  year , count(*) AS Tol_cars
+from car_data
+group by year
+
+
+-- find cars sold in repective year from highest to lower sells repectively
+select count(name) as total_sells, year 
+from car_data
+group by year
+order by  total_sells desc
+
+
+-- list diesel car sold in 2020
+select name , fuel , year
+from car_data
+where fuel = 'diesel' and `year` = '2020'
+
+
+-- Total cars sold based on fuel in respective years
+select * from car_data
+select  count(*), `year` 
+from car_data
+where fuel = 'diesel' --  fuel = 'diesel' 
+group by year
+
+select  count(*), `year` 
+from car_data
+where fuel = 'petrol' --  fuel = 'petrol'
+group by year
+
+select  count(*), `year` 
+from car_data
+where fuel = 'cng' --  fuel = 'cng'
+group by year
+
+
+-- in which year more than 100 care where sold out
+select  year,
+count(*) as tol_sold 
+from car_data
+group by  year
+having tol_sold > '100'
+order by tol_sold desc
+
+
+-- which fuel type cars has more sells
+select fuel , count(*) as tol_sells
+from car_data
+group by fuel
+order by tol_sells desc
+
+
+-- list out all total cars sold between 2015 and 2022
+select count(*) as tol_sold 
+from car_data
+where year between 2015 and 2022
+
+
+-- list out all cars sold between 2015 and 2022 with repective year
+select count(*) as tol_sold , year
+from car_data
+where year between 2015 and 2022
+group by year
+
+
+-- list car name , specificatons of car sold between 2105 to 2023
+select * from car_data
+where year between  2015 and 2023 
+ 
+ 
+ -- which sold car has highest mileage 
+ select name , max(mileage) as highest_mileage , year  
+ from car_data 
+group by name , year
+order by highest_mileage desc
